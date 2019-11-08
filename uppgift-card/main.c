@@ -10,9 +10,7 @@ typedef struct
 	int cardName;
 	char dateAccess[20];
 	bool access;
-
 } CARD;
-
 
 typedef struct
 {
@@ -82,7 +80,6 @@ void newUsers(SYSTEM_STATE* state)
 
 	if (choice == 1) {
 		state->allUsers[index].access = true;
-
 	}
 	else {
 		state->allUsers[index].access = false;
@@ -91,12 +88,10 @@ void newUsers(SYSTEM_STATE* state)
 	time_t justNu = time(NULL);
 	struct tm* datum = localtime(&justNu);
 
-
 	state->allUsers[index].cardName = newCard;
 	char accessDate[20];
 	snprintf(accessDate, 20, "%d-%d-%02d %02d:%02d", datum->tm_year + 1900, datum->tm_mon + 1, datum->tm_mday, datum->tm_hour, datum->tm_min);
 	strcpy(state->allUsers[index].dateAccess, accessDate);
-
 }
 
 void remoteOpen(SYSTEM_STATE* state)
@@ -107,33 +102,37 @@ void remoteOpen(SYSTEM_STATE* state)
 void fakeTest(SYSTEM_STATE* state)
 {
 	int cardtest;
-	GetInputInt("Enter card number: ", &cardtest);
-	for (int i = 0; i < state->amountOfUsers; i++)
+	printf("Enter a cardnumber or X to exit\n");
+	GetInputInt("---> ", &cardtest);
+	if (&cardtest == 'x') {
+		return;
+	}
+	else
 	{
-		if (state->allUsers[i].cardName == cardtest)
+		for (int i = 0; i < state->amountOfUsers; i++)
 		{
-			if (state->allUsers[i].access == true)
+			if (state->allUsers[i].cardName == cardtest)
 			{
-				printf("\nLAMP: GREEN\n");
-				printf("Access granted!\n");
-				getch();
-				return;
+				if (state->allUsers[i].access == true)
+				{
+					printf("\nLAMP: GREEN\n");
+					printf("Access granted!\n");
+					getch();
+					return;
+				}
+				else if (state->allUsers[i].access == false)
+				{
+					printf("\nLAMP: RED\n");
+					printf("Access denied!\n");
+					getch();
+				}
+				else
+					printf("Card does not exist in the system\n");
 			}
-			else if (state->allUsers[i].access == false)
-			{
-				printf("\nLAMP: RED\n");
-				printf("Access denied!\n");
-				getch();
-			}
-			else
-				printf("Card does not exist in the system\n");
-
 		}
 	}
-	getch();
-
+		//getch();
 }
-
 
 void adminPanel(SYSTEM_STATE* state)
 {
@@ -163,12 +162,10 @@ void adminPanel(SYSTEM_STATE* state)
 			return;
 		}
 	}
-
 }
 
 int main()
 {
-
 	SYSTEM_STATE state;
 	state.allUsers = NULL;
 	state.amountOfUsers = 0;
