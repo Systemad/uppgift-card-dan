@@ -104,7 +104,7 @@ void fakeTest(SYSTEM_STATE* state)
 	int cardtest;
 	printf("Enter a cardnumber or X to exit\n");
 	GetInputInt("---> ", &cardtest);
-	if (&cardtest == 'x') {
+	if (strcmp(&cardtest) == "x") {
 		return;
 	}
 	else
@@ -138,7 +138,7 @@ void adminPanel(SYSTEM_STATE* state)
 {
 	while (true)
 	{
-		printf("---Admin Panel---\n");
+		printf("\n---Admin Panel---\n");
 		printf("1. Remote open door\n2. List users\n3. New User\n");
 		printf("4. Fake test\n5. Exit\n");
 		int selection;
