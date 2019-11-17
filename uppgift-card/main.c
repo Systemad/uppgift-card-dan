@@ -99,6 +99,19 @@ void remoteOpen(SYSTEM_STATE* state)
 	printf("\nLamp is currently: GREEN\n");
 }
 
+/*
+Placebo
+
+
+string cardtest;
+	printf("Enter a cardnumber or X to exit\n");
+	GetInput("---> ", &cardtest, sizeof(cardtest));
+	if (strcmp(&cardtest) == "x") {
+		return;
+	}
+
+*/
+
 void fakeTest(SYSTEM_STATE* state)
 {
 	int cardtest;
