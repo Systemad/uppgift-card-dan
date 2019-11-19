@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "safeinput.h"
 #include <stdbool.h>
+#include <string.h>
 
 typedef struct
 {
@@ -101,17 +102,18 @@ void remoteOpen(SYSTEM_STATE* state)
 
 void fakeTest(SYSTEM_STATE* state)
 {
-	int cardtest;
+	char cardtest;
 	printf("Enter a cardnumber or X to exit\n");
 	GetInputInt("---> ", &cardtest);
-	if (strcmp(&cardtest) == "x") {
+	if (cardtest == 'x') {
 		return;
 	}
 	else
 	{
+		int convert = stoi(cardtest);
 		for (int i = 0; i < state->amountOfUsers; i++)
 		{
-			if (state->allUsers[i].cardName == cardtest)
+			if (state->allUsers[i].cardName == convert)
 			{
 				if (state->allUsers[i].access == true)
 				{
