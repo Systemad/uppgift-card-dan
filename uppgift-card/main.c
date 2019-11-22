@@ -103,15 +103,16 @@ void remoteOpen(SYSTEM_STATE* state)
 
 void fakeTest(SYSTEM_STATE* state)
 {
-	char cardtest;
+	char cardtest[20];
+	int convert;
 	printf("Enter a cardnumber or X to exit\n");
-	GetInputInt("---> ", &cardtest);
-	if (cardtest == 'x') {
+	GetInput("---> ", &cardtest, sizeof(cardtest));
+	if (cardtest == 'x'){
 		return;
 	}
 	else
 	{
-		int convert = stoi(cardtest);
+		convert = atoi(&cardtest);
 		for (int i = 0; i < state->amountOfUsers; i++)
 		{
 			if (state->allUsers[i].cardName == convert)
