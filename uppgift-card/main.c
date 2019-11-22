@@ -105,9 +105,9 @@ void fakeTest(SYSTEM_STATE* state)
 {
 	char cardtest[20];
 	int convert;
-	printf("Enter a cardnumber or X to exit\n");
-	GetInput("---> ", &cardtest, sizeof(cardtest));
-	if (cardtest == 'x'){
+	GetInput("Enter cardnumber or x to exit: ", &cardtest, sizeof(cardtest));
+
+	if (strcmp(cardtest, "x") == 0){
 		return;
 	}
 	else
