@@ -112,7 +112,7 @@ void fakeTest(SYSTEM_STATE* state)
 	}
 	else
 	{
-		convert = atoi(&cardtest);
+		convert = atoi(cardtest);
 		for (int i = 0; i < state->amountOfUsers; i++)
 		{
 			if (state->allUsers[i].cardName == convert)
